@@ -65,6 +65,7 @@ public class DrawingSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     public void init(){
         //make ball
         ball = new Ball(viewWidth/2, viewHeight/2, 100);
+        ball.dx = 3;
     }
 
 
@@ -73,7 +74,7 @@ public class DrawingSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      */
     public void update(){
         //update the "game state" here (move things around, etc.
-
+        ball.cx += ball.dx;
     }
 
 

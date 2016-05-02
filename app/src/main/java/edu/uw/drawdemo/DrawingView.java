@@ -64,6 +64,8 @@ public class DrawingView extends View {
         bmp = Bitmap.createBitmap(viewWidth, viewHeight, Bitmap.Config.ARGB_8888);
 
         ball = new Ball(viewWidth/2, viewHeight/2, 100);
+        ball.dx = 5;
+        ball.dy = 0;
 
     }
 
@@ -75,8 +77,42 @@ public class DrawingView extends View {
     {
         super.onDraw(canvas); //make sure to have the parent do any drawing it is supposed to!
 
+
+        ball.cx += ball.dx;
+        ball.cy += ball.dy;
+
+        if(ball.cx + ball.radius > viewWidth) {
+            ball.cx = viewWidth - ball.radius;
+            ball.dx *= -1;
+        }
+
+        if(ball.cx - ball.radius < 0) {
+            ball.cx = ball.radius;
+            ball.dx *= -1;
+        }
+
+        //check completed
+//        if(ball.cy + ball.radius < viewHeight) {
+//            ball.cy = viewHeight- ball.radius;
+//            ball.dy *=-1;
+//        }
+//
+//        if(ball.cy - ball.radius < 0 ) {
+//            ball.cy = ball.radius;
+//            ball.dy *=-1;
+//        }
         canvas.drawColor(Color.rgb(51,10,111)); //purple out the background
 
         canvas.drawCircle(ball.cx, ball.cy, ball.radius, whitePaint); //we can draw directly onto the canvas
+
+        //rectangle from pixels
+//        for (int i = 0; i < viewWidth; i++) {
+//            for (int j = 50; j < 75; j++) {
+//                bmp.setPixel(i, j, Color.YELLOW);
+//            }
+//        }
+//        canvas.drawBitmap(bmp, 0 ,0, null);
+
+        this.invalidate();
     }
 }
