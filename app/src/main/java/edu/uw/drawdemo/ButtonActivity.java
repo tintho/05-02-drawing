@@ -17,13 +17,12 @@ public class ButtonActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        final Button button = (Button)findViewById(R.id.button);
+        Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.v(TAG, "Clicked!");
-
+                v.animate().x(100f).y(300f).alpha(0f);
             }
         });
     }
